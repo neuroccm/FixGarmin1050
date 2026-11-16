@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RideGuard for the Garmin Edge 1050</title>
+<meta name="description" content="A data field that tells you, while you are still riding, that your bike computer has stopped recording.">
+<style>
+  :root {
+    --bg: #ffffff; --fg: #1b1f24; --muted: #57606a; --line: #d8dee4; --card: #f6f8fa;
+    --green: #1a7f37; --amber: #9a6700; --red: #cf222e; --grey: #6e7781;
+    --dot-green: #00c83c; --dot-amber: #ffaa00; --dot-red: #ff0000; --dot-grey: #a0a0a0;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0d1117; --fg: #e6edf3; --muted: #9da7b3; --line: #30363d; --card: #161b22;
+      --green: #3fb950; --amber: #d29922; --red: #ff7b72; --grey: #9da7b3;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg);
+         font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  main { max-width: 46rem; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
+  h1 { font-size: 2.1rem; line-height: 1.2; margin: 0 0 .6rem; }
+  h2 { font-size: 1.35rem; margin: 2.6rem 0 .6rem; padding-top: 1.2rem; border-top: 1px solid var(--line); }
+  p { margin: .7rem 0; }
+  .lead { font-size: 1.2rem; color: var(--muted); margin: 0 0 1.5rem; }
+  .shots { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin: 1.5rem 0; }
+  .shots figure { margin: 0; flex: 1 1 15rem; max-width: 20rem; text-align: center; }
+  .shots img { width: 100%; height: auto; border: 1px solid var(--line); border-radius: 12px; display: block; }
+  figcaption { font-size: .9rem; color: var(--muted); margin-top: .4rem; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 1rem; margin: 1rem 0; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 1rem; }
+  .card h3 { margin: 0 0 .4rem; font-size: 1.05rem; }
+  .card p { margin: 0; font-size: .95rem; }
+  .alert h3 { color: var(--red); }
+  table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .95rem; }
+  th, td { text-align: left; padding: .5rem .6rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-size: .85rem; color: var(--muted); font-weight: 600; }
+  td:first-child { white-space: nowrap; }
+  .dot { display: inline-block; width: .8em; height: .8em; border-radius: 50%; margin-right: .45em; vertical-align: baseline; }
+  .g { background: var(--dot-green); } .a { background: var(--dot-amber); } .r { background: var(--dot-red); }
+  .n { background: var(--dot-grey); } .h { background: transparent; border: 2px solid var(--dot-grey); }
+  code { font: .92em ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background: var(--card);
+         border: 1px solid var(--line); border-radius: 5px; padding: .05em .35em; white-space: nowrap; }
+  ul { padding-left: 1.2rem; } li { margin: .35rem 0; }
+  .note { background: var(--card); border-left: 4px solid var(--dot-amber); border-radius: 6px; padding: .8rem 1rem; margin: 1rem 0; }
+  footer { margin-top: 3rem; padding-top: 1.2rem; border-top: 1px solid var(--line); font-size: .88rem; color: var(--muted); }
+  a { color: inherit; }
+</style>
+</head>
+<body>
+<main>
+  <h1>RideGuard for the Garmin Edge 1050</h1>
+  <p class="lead">A data field that tells you, while you are still riding, that your bike computer has stopped recording.</p>
+
+  <div class="shots">
+    <figure>
+      <img src="RideGuard/doc/states-half-width.png" width="480" height="800"
+           alt="Ten half-width data fields showing every RideGuard state: ready, OK, paused, timer stopped, timer off, no speed, two red alerts, OK with an earlier alert on record, and ride ended.">
+      <figcaption>Every state, in half-width fields</figcaption>
+    </figure>
+    <figure>
+      <img src="RideGuard/doc/states-full-width.png" width="480" height="800"
+           alt="Five full-width data fields: ready with help text, OK, timer stopped, a red timer-not-running alert, and OK with an earlier alert on record.">
+      <figcaption>The same in full-width fields</figcaption>
+    </figure>
+  </div>
+
+  <h2>Why it exists</h2>
+  <p>On 3 October 2026 my Edge 1050 logged a timer stop two minutes into a three-hour, 65&nbsp;km ride and never started again. The screen kept counting distance, so nothing looked wrong. I found out at home: the saved ride was two minutes long.</p>
+  <p>Whether that was a stray touch or a fault in the Edge, I can't tell. Either way, nothing warned me. RideGuard is the warning.</p>
+
+  <h2>What it does</h2>
+  <p>RideGuard is a Connect IQ data field. It sits on a data page next to the Edge's own fields and runs alongside the stock ride software, on every page and in every timer state. Once a second it looks at the timer, your speed, the ride distance and your sensors. It raises three alerts:</p>
+  <div class="cards">
+    <div class="card alert">
+      <h3>Timer not running</h3>
+      <p>You are moving faster than 10&nbsp;km/h for 30&nbsp;s and the timer is stopped, paused or was never started. Repeats every 60&nbsp;s until you press Start.</p>
+    </div>
+    <div class="card alert">
+      <h3>Distance frozen</h3>
+      <p>The timer is running and you are moving, but the ride distance has not changed for 60&nbsp;s. Repeats every 60&nbsp;s.</p>
+    </div>
+    <div class="card alert">
+      <h3>HR or power lost</h3>
+      <p>A sensor seen earlier in the ride has been missing for 60&nbsp;s. Three beeps a minute apart, then silent; the field stays red until the sensor is back.</p>
+    </div>
+  </div>
+  <p>Each alert beeps, turns the field red and asks the Edge for a pop-up box over whatever page you are on.</p>
+
+  <h2>What you see</h2>
+  <table>
+    <thead><tr><th>Field shows</th><th>Meaning</th></tr></thead>
+    <tbody>
+      <tr><td><span class="dot h"></span><code>RG ready</code></td><td>No ride yet. Short help pages rotate underneath.</td></tr>
+      <tr><td><span class="dot g"></span><code>RG OK 1:12</code></td><td>Recording. The time is the Edge's own timer.</td></tr>
+      <tr><td><span class="dot g"></span><code>RG paused</code></td><td>Auto-pause at a standstill. Normal, and never an alarm.</td></tr>
+      <tr><td><span class="dot a"></span><code>RG timer stopped</code></td><td>You stopped the timer and the ride is still open. Press Start when you ride on.</td></tr>
+      <tr><td><span class="dot a"></span><code>RG timer off</code></td><td>You are moving but never pressed Start.</td></tr>
+      <tr><td><span class="dot a"></span><code>RG no speed</code></td><td>No speed for 10&nbsp;s, so RideGuard can't watch. It says so instead of showing green.</td></tr>
+      <tr><td><span class="dot r"></span><code>TIMER NOT RUNNING</code></td><td>One of the three alerts, on a red field, with what to do.</td></tr>
+      <tr><td><span class="dot n"></span><code>RG ride ended</code></td><td>The ride was saved or discarded.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>What it does not do</h2>
+  <ul>
+    <li>It does not keep a copy of the ride. I record every ride on a second device as well.</li>
+    <li>It does not fix or change the Edge. It only watches and warns.</li>
+    <li>It is not in the Connect IQ store. It is sideloaded over USB.</li>
+  </ul>
+
+  <h2>How it is built and tested</h2>
+  <ul>
+    <li>The alert rules and the ride lifecycle are plain logic with no device calls, so every rule and threshold is unit-tested in the Connect IQ simulator: 68 tests, plus 41 Python tests for the Mac-side tools.</li>
+    <li>On my machine the suite also replays my own rides second by second, 305 tests in all. The lost ride must raise the timer alert; a normal ride and eight later rides must stay silent. Those recordings are personal and are not published.</li>
+    <li>The display measures its text and picks fonts to fit, because an Edge 1050 field can be anything from 239×158 to 480×800 pixels.</li>
+    <li>A fault inside the field shows <code>RG error</code> instead of crashing it, because a crashed watchdog is a silent one.</li>
+  </ul>
+
+  <h2>Status</h2>
+  <div class="note">
+    <strong>November 2026.</strong> Built, reviewed and installed on my own Edge 1050 (firmware 32.20). All tests pass in the simulator. It has <strong>not yet completed a real ride on the device</strong>, so treat it as untested hardware-side.
+  </div>
+  <p>It was made for one device and one rider. A Mac companion that archives rides and flags broken ones (GarminGuard) is planned and not built.</p>
+
+  <h2>Reading, not contributing</h2>
+  <p>This is a personal project, published so others can read it. Issues are switched off and pull requests are not monitored. No open-source licence has been chosen, so the code is not licensed for reuse.</p>
+  <p>The source, the install steps and my notes on what a Connect IQ data field can and can't do on an Edge 1050 are in the repository's <code>README.md</code> and <code>RideGuard/README.md</code>.</p>
+
+  <footer>
+    Not affiliated with or endorsed by Garmin. Garmin, Edge, Epix and Connect IQ are trademarks of Garmin Ltd. or its subsidiaries. Provided as is, with no warranty: it is a second pair of eyes, not a guarantee that a ride is recorded.
+  </footer>
+</main>
+</body>
+</html>

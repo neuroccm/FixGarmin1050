@@ -1,0 +1,23 @@
+<resources>
+    <string id="AppName">RideGuard</string>
+    <string id="SetR31">Alert: moving, timer not running</string>
+    <string id="SetR31P">Beep when you ride faster than the speed below for longer than the delay while the ride timer is stopped, paused or never started.</string>
+    <string id="SetR32">Alert: ride distance frozen</string>
+    <string id="SetR32P">Beep when the timer runs and you are moving but the ride distance has not changed.</string>
+    <string id="SetR33">Alert: heart rate or power lost</string>
+    <string id="SetR33P">Beep (three times, a minute apart) when heart rate or power was seen earlier in this ride and then goes missing.</string>
+    <string id="SetSpeed">Moving speed (km/h)</string>
+    <string id="SetSpeedP">Above this speed you count as moving. Set it above your custom auto-pause speed.</string>
+    <string id="SetT1">Timer-not-running delay (s)</string>
+    <string id="SetT1P">How long you must be moving with the timer not running before the alert.</string>
+    <string id="SetT2">Distance-frozen delay (s)</string>
+    <string id="SetT2P">How long the distance may stay unchanged while moving before the alert.</string>
+    <string id="SetT3">Sensor-lost delay (s)</string>
+    <string id="SetT3P">How long heart rate or power may be missing before the alert.</string>
+    <string id="SetRepeat">Repeat every (s)</string>
+    <string id="SetRepeatP">While a problem lasts, the alert repeats at this interval. Sensor alerts stop after three beeps.</string>
+    <string id="SetTone">Beep with alerts</string>
+    <string id="SetToneP">Turn off for visual-only alerts.</string>
+    <string id="SetHelp">Help pages before the ride</string>
+    <string id="SetHelpP">Show rotating help pages until the ride starts.</string>
+</resources>

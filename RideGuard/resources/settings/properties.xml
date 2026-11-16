@@ -1,0 +1,12 @@
+<properties>
+    <property id="speedKmh" type="number">10</property>
+    <property id="t1" type="number">30</property>
+    <property id="t2" type="number">60</property>
+    <property id="t3" type="number">60</property>
+    <property id="repeatS" type="number">60</property>
+    <property id="r31On" type="boolean">true</property>
+    <property id="r32On" type="boolean">true</property>
+    <property id="r33On" type="boolean">true</property>
+    <property id="toneOn" type="boolean">true</property>
+    <property id="helpOn" type="boolean">true</property>
+</properties>

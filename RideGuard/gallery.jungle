@@ -1,0 +1,5 @@
+# Simulator-only preview of every RideGuard state at real field sizes. Never installed on the Edge.
+#   tools/ciq-build.sh needs monkey.jungle, so build this one with:
+#   monkeyc -d edge1050 -f RideGuard/gallery.jungle -o RideGuard/bin/GALLERY.prg -y "$CIQ_KEY"
+project.manifest = gallery-manifest.xml
+base.sourcePath = source;gallery

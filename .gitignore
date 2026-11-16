@@ -1,0 +1,22 @@
+# Build output
+bin/
+*.prg
+*.iq
+.DS_Store
+
+# Dev tooling
+tools/.venv/
+__pycache__/
+.pytest_cache/
+
+# Signing keys never belong in the repository
+*.der
+*.pem
+
+# Replay tests generated from personal ride recordings
+RideGuard/test/generated/
+
+# Ride and device data
+*.fit
+*.FIT
+*.gpx

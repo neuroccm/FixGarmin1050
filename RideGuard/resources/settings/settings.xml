@@ -1,0 +1,12 @@
+<settings>
+    <setting propertyKey="@Properties.r31On" title="@Strings.SetR31" prompt="@Strings.SetR31P"><settingConfig type="boolean"/></setting>
+    <setting propertyKey="@Properties.r32On" title="@Strings.SetR32" prompt="@Strings.SetR32P"><settingConfig type="boolean"/></setting>
+    <setting propertyKey="@Properties.r33On" title="@Strings.SetR33" prompt="@Strings.SetR33P"><settingConfig type="boolean"/></setting>
+    <setting propertyKey="@Properties.speedKmh" title="@Strings.SetSpeed" prompt="@Strings.SetSpeedP"><settingConfig type="numeric" min="5" max="40"/></setting>
+    <setting propertyKey="@Properties.t1" title="@Strings.SetT1" prompt="@Strings.SetT1P"><settingConfig type="numeric" min="10" max="300"/></setting>
+    <setting propertyKey="@Properties.t2" title="@Strings.SetT2" prompt="@Strings.SetT2P"><settingConfig type="numeric" min="20" max="600"/></setting>
+    <setting propertyKey="@Properties.t3" title="@Strings.SetT3" prompt="@Strings.SetT3P"><settingConfig type="numeric" min="20" max="600"/></setting>
+    <setting propertyKey="@Properties.repeatS" title="@Strings.SetRepeat" prompt="@Strings.SetRepeatP"><settingConfig type="numeric" min="20" max="600"/></setting>
+    <setting propertyKey="@Properties.toneOn" title="@Strings.SetTone" prompt="@Strings.SetToneP"><settingConfig type="boolean"/></setting>
+    <setting propertyKey="@Properties.helpOn" title="@Strings.SetHelp" prompt="@Strings.SetHelpP"><settingConfig type="boolean"/></setting>
+</settings>
