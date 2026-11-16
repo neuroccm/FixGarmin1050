@@ -91,7 +91,7 @@ Measured on firmware 32.20 with a throwaway test field. These may save someone e
 - `Attention.playTone` works from a data field in every timer state.
 - Auto-pause arrives as timer state "paused". After a save or discard the timer returns to "off"; `onTimerReset` was not seen on a discard.
 - The Edge reloads data fields often around the data-screen editor, so anything that matters has to be saved and restored.
-- A sideloaded `.PRG` copied to `/Garmin/Apps/` is moved to `/Garmin/Apps/Media/` on unplug and stored encrypted there.
+- A sideloaded `.PRG` copied to `/Garmin/Apps/` is moved to `/Garmin/Apps/Media/` on unplug. The copy there has the same size but different bytes (presumably encrypted), so it can't be compared with a build.
 - A sideloaded app's settings can't be changed from the Garmin Connect app.
 - The SDK's default source path is **every `.mc` file under the project**, tests included. Set `base.sourcePath` in `monkey.jungle`.
 - The simulator is not the device: it shows every alert, encrypts nothing and enforces no storage limit.
